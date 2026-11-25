@@ -1,0 +1,50 @@
+{% extends "Main/nav.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="delete-page">
+        <div class="delete-card">
+
+            <div class="delete-icon">!</div>
+
+            <span class="eyebrow danger-label">DELETE COURSE</span>
+
+            <h1>Are you sure?</h1>
+
+            <p class="delete-description">
+                You are about to permanently delete this course.
+                This action cannot be undone.
+            </p>
+
+            <div class="delete-preview">
+                {% if course.image %}
+                    <img src="{{ course.image.url }}" alt="">
+                {% else %}
+                    <div class="delete-placeholder">COURSE</div>
+                {% endif %}
+
+                <div class="delete-course-info">
+                    <h3>{{ course.title }}</h3>
+                    <span>{{ course.category }} · {{ course.level }}</span>
+                </div>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="delete-actions">
+                    <a href="{% url 'course_detail' course.pk %}"
+                    class="cancel-btn">Keep course</a>
+
+                    <button type="submit" class="delete-btn">
+                        Delete permanently
+                    </button>
+                </div>
+            </form>
+
+            <p class="delete-note">
+                Please make sure you really want to remove this course.
+            </p>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends "Main/nav.html" %}
+{% load static %}
+
+{% block content %}
+    <main class="courses-container">
+
+        <section class="course-hero">
+            <div class="hero-content">
+                <span class="eyebrow">LEARN SOMETHING NEW</span>
+                <h1>Grow your skills.<br>Build your future.</h1>
+                <p>
+                    Discover practical courses designed to help you learn,
+                    develop new skills, and move forward with confidence.
+                </p>
+
+                <div class="search-box">
+                    <input type="search" id="courseSearch"
+                        placeholder="Search courses, skills or topics...">
+                    <button onclick="filterCourses()">Search</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="course-section">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">COURSE LIBRARY</span>
+                    <h2>Explore our courses</h2>
+                    <p>Find the right learning path for you.</p>
+                </div>
+            </div>
+
+            <div class="category-list">
+                <button class="category-items active" onclick="selectCategory('all', this)">All Courses</button>
+                <button class="category-items" onclick="selectCategory('technology', this)">Technology</button>
+                <button class="category-items" onclick="selectCategory('business', this)">Business</button>
+                <button class="category-items" onclick="selectCategory('design', this)">Design</button>
+                <button class="category-items" onclick="selectCategory('engineering', this)">Engineering</button>
+            </div>
+
+            <div class="course-grid" id="courseGrid">
+
+                {% for course in courses %}
+                    {% include "Templates/Partials/per_course.html" %}
+                {% empty %}
+                    <div class="empty-state">
+                        <h3>No courses available yet</h3>
+                        <p>Check back soon for new learning materials.</p>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </section>
+    </main>
+{% endblock content %}

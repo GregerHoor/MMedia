@@ -1,0 +1,141 @@
+{% extends 'Main/nav.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main class="page-container">
+
+        <section class="community-hero">
+            <div>
+                <span class="eyebrow">LEARN TOGETHER</span>
+                <h1>Ideas grow better<br>when shared.</h1>
+                <p>
+                    Ask questions, exchange knowledge, share your experience,
+                    and connect with people who are learning and building.
+                </p>
+                <a href="#discussions" class="green-btn">Explore Discussions →</a>
+            </div>
+
+            <div class="community-visual">
+                <div class="community-circle">
+                    <span>Learn</span>
+                    <span>Share</span>
+                    <span>Grow</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="community-categories">
+            <a href="#" class="community-category">
+                <span class="category-icon">📚</span>
+                <div>
+                    <h3>Learning & Courses</h3>
+                    <p>Discuss lessons and learning paths</p>
+                </div>
+            </a>
+
+            <a href="#" class="community-category">
+                <span class="category-icon">💻</span>
+                <div>
+                    <h3>Technology</h3>
+                    <p>Programming, tools and tech</p>
+                </div>
+            </a>
+
+            <a href="#" class="community-category">
+                <span class="category-icon">💡</span>
+                <div>
+                    <h3>Ideas & Projects</h3>
+                    <p>Share ideas and get feedback</p>
+                </div>
+            </a>
+
+            <a href="#" class="community-category">
+                <span class="category-icon">🤝</span>
+                <div>
+                    <h3>General Community</h3>
+                    <p>Connect and talk with others</p>
+                </div>
+            </a>
+        </section>
+
+        <section class="community-layout" id="discussions">
+
+            <div class="discussion-main">
+                <div class="section-title">
+                    <div>
+                        <span class="eyebrow">COMMUNITY FORUM</span>
+                        <h2>Recent discussions</h2>
+                    </div>
+                    <a href="#" class="text-link">View all →</a>
+                </div>
+
+                <div class="discussion-list">
+                    {% for post in posts %}
+                    <article class="discussion-card">
+                        <div class="post-avatar">
+                            {{ post.author.username|slice:":1"|upper }}
+                        </div>
+
+                        <div class="discussion-content">
+                            <div class="post-meta">
+                                <span>{{ post.author.username }}</span>
+                                <span>·</span>
+                                <span>{{ post.created_at|timesince }} ago</span>
+                            </div>
+
+                            <h3>
+                                <a href="{% url 'community_post_detail' post.pk %}">
+                                    {{ post.title }}
+                                </a>
+                            </h3>
+
+                            <p>{{ post.content|truncatewords:25 }}</p>
+
+                            <div class="post-footer">
+                                <span>💬 {{ post.comments.count }} replies</span>
+                                <span class="post-tag">{{ post.category }}</span>
+                            </div>
+                        </div>
+                    </article>
+                    {% empty %}
+                    <div class="empty-card">
+                        <h3>No discussions yet</h3>
+                        <p>Be the first to start a conversation in the community.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <aside class="community-sidebar">
+
+                <div class="side-panel">
+                    <h3>Community guidelines</h3>
+                    <ul class="guidelines">
+                        <li>Be respectful and helpful.</li>
+                        <li>Share knowledge constructively.</li>
+                        <li>Keep discussions relevant.</li>
+                        <li>Avoid spam and harmful content.</li>
+                        <li>Respect other people's work.</li>
+                    </ul>
+                    <a href="#" class="text-link">Read full guidelines →</a>
+                </div>
+
+                <div class="side-panel green-panel">
+                    <h3>Have something to share?</h3>
+                    <p>Start a discussion, ask a question, or share an idea with the community.</p>
+                    <a href="#" class="green-btn full-btn">Create a post +</a>
+                </div>
+
+                <div class="side-panel">
+                    <h3>Need assistance?</h3>
+                    <p>Having trouble using the platform?</p>
+                    <a href="{% url 'help_center' %}" class="text-link">Visit Help Center →</a>
+                </div>
+
+            </aside>
+        </section>
+
+    </main>
+
+{% endblock content %}

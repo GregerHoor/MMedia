@@ -1,0 +1,164 @@
+{% extends 'Main/nav.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main class="page-container">
+
+        <section class="help-hero">
+            <span class="eyebrow">SUPPORT & GUIDANCE</span>
+            <h1>How can we help you?</h1>
+            <p>Find answers, learn how things work, and get help with your experience.</p>
+
+            <div class="help-search">
+                <input type="search" id="helpSearch" placeholder="Search for help...">
+                <button onclick="searchHelp()">Search</button>
+            </div>
+        </section>
+
+        <section class="help-categories">
+            <a href="#learning" class="help-category">
+                <div class="help-icon">📖</div>
+                <h3>Learning & Courses</h3>
+                <p>Courses, lessons and learning resources</p>
+            </a>
+
+            <a href="#ebooks" class="help-category">
+                <div class="help-icon">📚</div>
+                <h3>Ebooks</h3>
+                <p>Accessing and using ebook resources</p>
+            </a>
+
+            <a href="#account" class="help-category">
+                <div class="help-icon">👤</div>
+                <h3>Account & Access</h3>
+                <p>Registration, login and profile</p>
+            </a>
+
+            <a href="#services" class="help-category">
+                <div class="help-icon">🤝</div>
+                <h3>Outsourcing Services</h3>
+                <p>Requests, delivery and service enquiries</p>
+            </a>
+        </section>
+
+        <section class="faq-section">
+            <span class="eyebrow">FREQUENTLY ASKED QUESTIONS</span>
+            <h2>Common questions</h2>
+
+            <div class="faq-list">
+
+                <div class="faq-item" id="learning">
+                    <button class="faq-question">
+                        How can I access courses?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Visit the Courses page and select any course you are
+                            interested in. Available course information and lessons
+                            can be accessed from the course page.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do I need an account to learn?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Some learning content can be accessed without an account.
+                            An account may be required for personalized features,
+                            participation, saved progress or restricted services.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item" id="ebooks">
+                    <button class="faq-question">
+                        How do I access ebooks?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Visit the ebooks section to browse available materials.
+                            Access, reading, downloading or purchasing options
+                            depend on the individual ebook's listing and permissions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item" id="account">
+                    <button class="faq-question">
+                        How do I create an account?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Select the sign-up option on the website and complete
+                            the required information. Follow any verification
+                            instructions to activate your account.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        I forgot my password. What should I do?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Use the Forgot Password option on the login page.
+                            Follow the password reset instructions sent to your
+                            registered email address.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item" id="services">
+                    <button class="faq-question">
+                        How do outsourcing requests work?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            You can contact us with your project requirements,
+                            deliverables, budget and deadline. Our team will
+                            review your enquiry and communicate the next steps,
+                            scope and terms before work begins.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I contribute content or ebooks?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Contributions may be accepted depending on the type
+                            of content, relevance, quality, ownership rights
+                            and platform guidelines. Contact us for contribution
+                            or publishing enquiries.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="support-banner">
+            <div>
+                <h2>Still need help?</h2>
+                <p>Our support team is available to help with your enquiries.</p>
+            </div>
+            <a href="{% url 'contact_us' %}" class="green-btn">Contact Us →</a>
+        </section>
+
+    </main>
+
+{% endblock content %}

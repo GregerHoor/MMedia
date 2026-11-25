@@ -1,0 +1,93 @@
+{% extends "Main/nav.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="form-page">
+        <a href="{% url 'courses' %}" class="back-link">← Back to courses</a>
+
+        <div class="form-card">
+            <div class="form-header">
+                <div class="form-icon">＋</div>
+                <span class="eyebrow">COURSE MANAGEMENT</span>
+                <h1>Add a new course</h1>
+                <p>Fill in the details below to publish a new learning experience.</p>
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-grid">
+                    <div class="field full">
+                        <label for="title">Course title</label>
+                        <input type="text" name="title" id="title"
+                            placeholder="e.g. Introduction to Python Programming"
+                            required>
+                    </div>
+
+                    <div class="field full">
+                        <label for="objectives">Course Objectives</label>
+                        <textarea name="objectives" id="objectives"
+                                rows="5"
+                                placeholder="What are the objectives of this course?"
+                                required></textarea>
+                    </div>
+
+                    <div class="field full">
+                        <label for="story">Course Description</label>
+                        <textarea name="story" id="story"
+                                rows="5"
+                                placeholder="What will students learn in this course?"
+                                required></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label for="category">Category</label>
+                        <select name="category" id="category" required>
+                            <option value="">Select category</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Business">Business</option>
+                            <option value="Design">Design</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Science">Science</option>
+                            <option value="Education">Education</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="level">Course level</label>
+                        <select name="level" id="level" required>
+                            <option value="">Select level</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="instructor">Instructor</label>
+                        <input type="text" name="instructor" id="instructor"
+                            placeholder="Instructor's name" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="image_url">Example Image of Course Link</label>
+                        <input type="text" name="image_url" id="image_url"
+                            placeholder="e.g. https://" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="related_links">Related Course Links</label>
+                        <input type="text" name="related_links" id="related_links"
+                            placeholder="e.g. https://" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="{% url 'courses' %}" class="cancel-btn">Cancel</a>
+                    <button type="submit" class="submit-btn">Create course →</button>
+                </div>
+            </form>
+        </div>
+</div>
+
+{% endblock content %}

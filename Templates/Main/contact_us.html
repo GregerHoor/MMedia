@@ -1,0 +1,106 @@
+{% extends 'Main/nav.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main class="page-container">
+        <section class="contact-hero">
+            <span class="eyebrow">WE'D LOVE TO HEAR FROM YOU</span>
+            <h1>Let's start a conversation.</h1>
+            <p>
+                Have a question, suggestion, learning enquiry, ebook issue,
+                or outsourcing project? Send us a message.
+            </p>
+        </section>
+
+        <section class="contact-layout">
+
+            <div class="contact-info">
+                <div class="contact-info-card green-panel">
+                    <h2>Get in touch</h2>
+                    <p>
+                        Tell us what you need and we'll do our best to
+                        direct your enquiry to the right place.
+                    </p>
+                </div>
+
+                <div class="contact-info-card">
+                    <span class="contact-icon">✉</span>
+                    <h3>Email support</h3>
+                    <p>For general enquiries and assistance.</p>
+                    <a href="mailto:support@example.com">support@example.com</a>
+                </div>
+
+                <div class="contact-info-card">
+                    <span class="contact-icon">📚</span>
+                    <h3>Learning & ebooks</h3>
+                    <p>Course, ebook, content or resource enquiries.</p>
+                </div>
+
+                <div class="contact-info-card">
+                    <span class="contact-icon">🤝</span>
+                    <h3>Outsourcing & projects</h3>
+                    <p>
+                        Discuss project requirements, content production,
+                        collaboration and professional services.
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-form-card">
+                <h2>Send us a message</h2>
+                <p class="form-subtitle">Complete the form below to contact our team.</p>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="contact-fields">
+                        <div class="field">
+                            <label for="name">Full name</label>
+                            <input type="text" name="name" id="name"
+                                placeholder="Your name" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="email">Email address</label>
+                            <input type="email" name="email" id="email"
+                                placeholder="you@example.com" required>
+                        </div>
+
+                        <div class="field full">
+                            <label for="subject">Enquiry type</label>
+                            <select name="subject" id="subject" required>
+                                <option value="">Choose an enquiry type</option>
+                                <option value="Learning">Learning & courses</option>
+                                <option value="Ebooks">Ebooks & resources</option>
+                                <option value="Outsourcing">Outsourcing / project request</option>
+                                <option value="Account">Account assistance</option>
+                                <option value="Feedback">Feedback & suggestions</option>
+                                <option value="Other">Other enquiry</option>
+                            </select>
+                        </div>
+
+                        <div class="field full">
+                            <label for="message">Your message</label>
+                            <textarea name="message" id="message" rows="6"
+                                    placeholder="How can we help you?"
+                                    required></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="green-btn submit-contact">
+                        Send Message →
+                    </button>
+
+                    <small class="form-privacy">
+                        Your information will be handled according to our
+                        <a href="{% url 'privacy_policy' %}">Privacy Policy</a>.
+                    </small>
+                </form>
+            </div>
+
+        </section>
+
+    </main>
+
+{% endblock content %}

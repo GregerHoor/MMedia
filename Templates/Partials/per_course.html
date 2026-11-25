@@ -1,0 +1,42 @@
+<article class="course-card"
+    data-category="{{ course.category|lower }}"
+    data-title="{{ course.title|lower }}">
+
+    <div class="course-image">
+        <a href="{{course.image_url}}">
+            {% if course.image_url|slice:"-4:" == ".jpg" or course.image_url|slice:"-4:" == ".png" or course.image_url|slice:"-4:" == "jpeg" or course.image_url|slice:"-4:" == ".gif" or course.image_url|slice:"-4:" == "webp" %}
+            <img src="{{course.image_url}}" loading="lazy" width="100%" height="150px">
+            {% elif course.image_url|slice:"-4:" == ".pdf" %}
+            <embed src="{{course.image_url}}" type="application/pdf">
+            {% elif course.image_url|slice:"-4:" == ".mp3" or course.image_url|slice:"-4:" == ".wav" %}
+            <audio controls><source src="{{course.image_url}}" type="audio/mpeg"></audio>
+            {% elif course.image_url|slice:"-4:" == ".mp4" or course.image_url|slice:"-4:" == "webm" or course.image_url|slice:"-4:" == ".ogg" %}
+            <video controls class="lazy_video" preload="none"><source data-src="{{course.image_url}}" type="video/mp4"></video>
+            {% else %}
+                <div class="image-placeholder">LEARN</div>
+                <p>{{course.image_url}}</p>
+            {% endif %}
+        </a>
+
+        <span class="course-level">{{ course.level }}</span>
+    </div>
+
+    <div class="course-body">
+        <span class="course-category">{{ course.category }}</span>
+        <h3>{{ course.title }}</h3>
+        <p class="course-description">
+            {{ course.story|truncatewords:18 }}
+        </p>
+
+        <div class="course-footer">
+            <span class="instructor">
+                {{ course.author }}
+            </span>
+            <a href="{% url 'course_select' course.token %}"
+            class="view-course">
+                View Course →
+            </a>
+        </div>
+    </div>
+</article>
+
