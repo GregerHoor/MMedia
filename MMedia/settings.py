@@ -33,7 +33,7 @@ DEBUG = env.bool('DEBUG', default=False)
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 else:
-    ALLOWED_HOSTS = ['', '']
+    ALLOWED_HOSTS = ['mmedia-sqls.onrender.com', 'https://mmedia-sqls.onrender.com']
 
 if DEBUG:
     SECRET_KEY = env('SECRET_KEY')
