@@ -673,6 +673,47 @@ footer {
     font-weight: 700;
 }
 
+.course-more-options {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: white;
+    fill: var(--green);
+    font-size: 11px;
+    padding: 5px;
+    border-radius: 50%;
+    font-weight: 700;
+    height: fit-content;
+    width: fit-content;
+}
+
+.more-options {
+    position: absolute;
+    top: 48px;
+    right: 12px;
+    display: block;
+    background: white;
+    color: var(--green);
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    height: fit-content;
+    width: fit-content;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+.d-flex {
+    display: flex;
+}
+
 .course-body {
     padding: 20px;
 }

@@ -31,14 +31,14 @@
 
             <div class="detail-cover">
                 <a href="{{course.image_url}}">
-                    {% if course.image_url|slice:"-4:" == ".jpg" or course.image_url|slice:"-4:" == ".png" or course.image_url|slice:"-4:" == "jpeg" or course.image_url|slice:"-4:" == ".gif" or course.image_url|slice:"-4:" == "webp" %}
-                    <img src="{{course.image_url}}" loading="lazy" width="100%" height="150px">
+                    {% if ".jpg" in course.image_url or "png" in course.image_url  or "jpeg" in course.image_url or "gif" in course.image_url or "webp" in course.image_url or "image" in course.image_url %}
+                        <img src="{{course.image_url}}" loading="lazy" width="100%" height="150px">
                     {% elif course.image_url|slice:"-4:" == ".pdf" %}
-                    <embed src="{{course.image_url}}" type="application/pdf">
+                        <embed src="{{course.image_url}}" type="application/pdf">
                     {% elif course.image_url|slice:"-4:" == ".mp3" or course.image_url|slice:"-4:" == ".wav" %}
-                    <audio controls><source src="{{course.image_url}}" type="audio/mpeg"></audio>
+                        <audio controls><source src="{{course.image_url}}" type="audio/mpeg"></audio>
                     {% elif course.image_url|slice:"-4:" == ".mp4" or course.image_url|slice:"-4:" == "webm" or course.image_url|slice:"-4:" == ".ogg" %}
-                    <video controls class="lazy_video" preload="none"><source data-src="{{course.image_url}}" type="video/mp4"></video>
+                        <video controls class="lazy_video" preload="none"><source data-src="{{course.image_url}}" type="video/mp4"></video>
                     {% else %}
                         <div class="image-placeholder">LEARN</div>
                         <p>{{course.image_url}}</p>

@@ -33,7 +33,7 @@
                 {% csrf_token %}
 
                 <div class="delete-actions">
-                    <a href="{% url 'course_detail' course.pk %}"
+                    <a href="javascript:history.back()"
                     class="cancel-btn">Keep course</a>
 
                     <button type="submit" class="delete-btn">

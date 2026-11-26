@@ -59,8 +59,16 @@ def courses(request):
 
 
 def edit(request, token):
+    book = EBooks.objects.filter(token=token).first()
+    resource = Resources.objects.filter(ebooks=book)
+    
+    context = {
+        'course':book,
+        'resource':resource,
+    }
+    
     if request.method == 'POST':
-        author = request.POST.get('author')
+        author = request.POST.get('instructor')
         title = request.POST.get('title')
         story = request.POST.get('story')
         level = request.POST.get('level')
@@ -83,7 +91,9 @@ def edit(request, token):
         redirect_path = 'courses'
         
         CUD_Functions().edit_content(request, token, model, parameters_1, redirect_path)
-    return render(request, 'Templates/Partials/edit_form.html')
+        
+        return redirect(redirect_path)
+    return render(request, 'Templates/Partials/edit_form.html', context)
 
     
 def delete(request, token):
@@ -92,6 +102,8 @@ def delete(request, token):
         redirect_path = 'courses'
         
         CUD_Functions().delete_content(request, token, model, redirect_path)
+        
+        return redirect(redirect_path)
     return render(request, 'Templates/Partials/delete_form.html')
 
     
@@ -108,36 +120,39 @@ def add(request):
         category = request.POST.get('category')
         link = request.POST.get('related_links')
         
-        parameters_1 = {
-            'author':author,
-            'title':title,
-            'story':story,
-            'level':level,
-            'image_url':image,
-            'category':category,
-            'objectives':objectives,
-        }
-        checker_1 = {
-            'title':title,
-        }
-        
-        model1 = EBooks
-        model2 = Resources
-        redirect_path = 'courses'
-        
-        ebook = CUD_Functions().add_content(request, model1, parameters_1, checker_1)
-        
-        if link:
-            parameters_2 = {
-                'resource_link':link
+        if author is not None and title is not None:
+            parameters_1 = {
+                'author':author,
+                'title':title,
+                'story':story,
+                'level':level,
+                'image_url':image,
+                'category':category,
+                'objectives':objectives,
+            }
+            checker_1 = {
+                'title':title,
             }
             
-            checker_2 = {
-                'ebooks':ebook,
-            }
-            
-            CUD_Functions().add_content(request, model2, parameters_2, checker_2)
+            model1 = EBooks
+            model2 = Resources
+            redirect_path = 'courses'
         
+            ebook = CUD_Functions().add_content(request, model1, parameters_1, checker_1)
+            
+            if link:
+                parameters_2 = {
+                    'resource_link':link
+                }
+                
+                checker_2 = {
+                    'ebooks':ebook,
+                }
+                
+                CUD_Functions().add_content(request, model2, parameters_2, checker_2)
+        else:
+            messages.error(request, 'Required fields are missing please try again.')
+            return redirect('add_content')
         
         return redirect(redirect_path)
     return render(request, 'Templates/Partials/add_form.html')
@@ -159,7 +174,7 @@ class CUD_Functions:
         if ebooks:
             ebooks.delete()
                         
-        return redirect(redirect_path)
+        return ebooks
         
     
     def edit_content(self, request, token, model, parameters, redirect_path):
@@ -168,7 +183,7 @@ class CUD_Functions:
         if ebooks:
             edit_ebooks = ebooks.update(**parameters)
                 
-        return redirect(redirect_path)
+        return ebooks
         
     
 

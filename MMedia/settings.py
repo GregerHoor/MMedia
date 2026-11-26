@@ -24,8 +24,8 @@ from django.core.exceptions import ImproperlyConfigured
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-if environ.Env.read_env(os.path.join(BASE_DIR, 'MMTest.env')):
-    environ.Env.read_env(os.path.join(BASE_DIR, 'MMTest.env'))
+if environ.Env.read_env(r'C:\Users\USER\myEnvs\MMTest.env'):
+    environ.Env.read_env(r'C:\Users\USER\myEnvs\MMTest.env')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=False)
